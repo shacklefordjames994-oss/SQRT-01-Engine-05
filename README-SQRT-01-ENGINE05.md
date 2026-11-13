@@ -16,7 +16,7 @@ Status of the code in this tree is established only by executing it:
 | Coordinate mapping | Not implemented. |
 | WKB hybrid (05-G) | Not implemented. |
 | Experimental validation | Not validated. |
-| Repository publication | Not claimed. |
+| Repository publication | Published to shacklefordjames994-oss/SQRT-01-Engine-05, commit a4046b6. The connected GitHub account cannot write shacklefordjames60-coder/James-Shackleford-E-. |
 
 Archived Gaussian prototypes are kept as cited numbers. The solver is checked
 against them. They are not overwritten, and they are not experimental data.

@@ -1,6 +1,9 @@
 # SQRT-01 Engine 05 changelog
 
-Not a GitHub commit. Nothing in this file was pushed.
+Published to https://github.com/shacklefordjames994-oss/SQRT-01-Engine-05
+Commit a4046b6664321c545ee6ed47c0bc5cb75097c9be on main.
+
+The connected GitHub account is shacklefordjames994-oss. It cannot write shacklefordjames60-coder/James-Shackleford-E-, so that repository's one-line README was left untouched.
 
 ## 05-E retained
 
