@@ -322,7 +322,9 @@
         "max_error": 2.954852518740247,
         "finite_difference_max_error": 180.56385423390404,
         "grid": "uniform",
+        "characteristic_spacing": 0.006211180124223602,
         "reduction_ratio": null,
+        "observed_order": null,
         "formal_order": "NOT_ASSIGNED"
       },
       {
@@ -330,7 +332,9 @@
         "max_error": 0.21089936362344197,
         "finite_difference_max_error": 651.4646179166522,
         "grid": "uniform",
+        "characteristic_spacing": 0.003115264797507788,
         "reduction_ratio": 14.010722782530996,
+        "observed_order": 3.825626560222531,
         "formal_order": "NOT_ASSIGNED"
       },
       {
@@ -338,11 +342,15 @@
         "max_error": 0.013570338753509326,
         "finite_difference_max_error": 33.02378707776391,
         "grid": "uniform",
+        "characteristic_spacing": 0.0015600624024961,
         "reduction_ratio": 15.541201104423633,
+        "observed_order": 3.9669475308559945,
         "formal_order": "NOT_ASSIGNED"
       }
     ],
-    "note": "Separate tridiagonal boundary-value method. Not a variable-step call and not a Gaussian eigenvalue. Not a measurement."
+    "coefficient_source": "preprint-10.21203/rs.3.rs-229482/v1 equations 16-19, text extraction",
+    "springer_page_images_checked": false,
+    "note": "Separate tridiagonal boundary-value method. Not a variable-step call and not a Gaussian eigenvalue. Observed order is measured on uniform meshes with spacing 1/(N+1). Formal order is not assigned. Not a measurement."
   },
   "spec_record": {
     "engine": "SQRT-01-ENGINE-05",
@@ -400,6 +408,8 @@
     "The printed 2005 step-size equation has no root larger than the previous step, so it cannot increase the step.",
     "The Gaussian two-zone run is not a reproduction of the 2005 Woods-Saxon table.",
     "05-F is the 2021 Brunetti-Speciale-Rudan tridiagonal system. It is not the 2005 recurrence.",
+    "05-F coefficients were checked against a text extraction of preprint 10.21203/rs.3.rs-229482/v1 equations (16)-(19). The Springer page images were not photographed.",
+    "On uniform meshes the measured error ratio gives an observed order near 4. Formal order stays NOT_ASSIGNED.",
     "The 2021 manufactured coefficients were reconstructed from solution (20); the extracted text of (21) did not satisfy the ODE.",
     "Elliptic centrifugal start for ell>0 is implemented but not part of this certified benchmark.",
     "Excited-state brackets are not certified.",
@@ -408,7 +418,7 @@
   "pytest": {
     "exit_code": 0,
     "passed": true,
-    "summary": "34 passed in 1.95s"
+    "summary": "39 passed in 4.87s"
   },
-  "content_sha256": "c46a33bc38a53e6ab7532a9f6b2ecb84284e10428dfc1d87883c8a917a2be10a"
+  "content_sha256": "6ebf2523d691beb721fa7d0d44d92867a15ed0e23f9cde0ffa898198065045a5"
 }

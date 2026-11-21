@@ -600,15 +600,20 @@ def run_benchmark() -> dict:
                     "max_error": run.max_error,
                     "finite_difference_max_error": run.finite_difference_max_error,
                     "grid": run.grid,
+                    "characteristic_spacing": run.characteristic_spacing,
                     "reduction_ratio": run.reduction_ratio,
+                    "observed_order": run.observed_order,
                     "formal_order": run.formal_order,
                 }
                 for run in nonuniform
             ],
+            "coefficient_source": "preprint-10.21203/rs.3.rs-229482/v1 equations 16-19, text extraction",
+            "springer_page_images_checked": False,
             "note": (
                 "Separate tridiagonal boundary-value method. "
                 "Not a variable-step call and not a Gaussian eigenvalue. "
-                "Not a measurement."
+                "Observed order is measured on uniform meshes with spacing 1/(N+1). "
+                "Formal order is not assigned. Not a measurement."
             ),
         },
         "spec_record": {
@@ -660,6 +665,8 @@ def run_benchmark() -> dict:
             "The printed 2005 step-size equation has no root larger than the previous step, so it cannot increase the step.",
             "The Gaussian two-zone run is not a reproduction of the 2005 Woods-Saxon table.",
             "05-F is the 2021 Brunetti-Speciale-Rudan tridiagonal system. It is not the 2005 recurrence.",
+            "05-F coefficients were checked against a text extraction of preprint 10.21203/rs.3.rs-229482/v1 equations (16)-(19). The Springer page images were not photographed.",
+            "On uniform meshes the measured error ratio gives an observed order near 4. Formal order stays NOT_ASSIGNED.",
             "The 2021 manufactured coefficients were reconstructed from solution (20); the extracted text of (21) did not satisfy the ODE.",
             "Elliptic centrifugal start for ell>0 is implemented but not part of this certified benchmark.",
             "Excited-state brackets are not certified.",

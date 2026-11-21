@@ -13,6 +13,11 @@ Vigo-Aguiar and Ramos 2005, equation (8), prefactor `h_n^2/12`. The `h_{n+1}^2/1
 
 Separate tridiagonal solver from Brunetti, Speciale and Rudan 2021. Not a call to 05-E. Manufactured solution (20) with rebuilt `c` and `s`. Matrix asymmetry is tested. Formal order is not assigned.
 
+## 05-F coefficient audit
+
+`assemble_brunetti_speciale_rudan_2021` is the band form of preprint equations (16)–(19). The dense solver uses that same row. A text extraction of CC-BY preprint 10.21203/rs.3.rs-229482/v1 was checked. The Springer page images were not. The linear solution `u = 2 + 3x` passes on a nonuniform grid. Uniform refinement records a measured order and still leaves the formal order `NOT_ASSIGNED`. 05-E was not edited.
+
+
 ## Still out
 
 Coordinate mapping. WKB hybrid. Woods–Saxon table.

@@ -52,6 +52,24 @@ The extracted text of (21) did not satisfy the ODE. The coefficients in `brunett
 
 Maximum nodal error is `max |u_computed - u_exact|`. A measured drop when the node count doubles is recorded as `reduction_ratio`. Formal order is `NOT_ASSIGNED`.
 
+## Coefficient check
+
+The row is preprint equations (16)–(19) from the CC-BY text of 10.21203/rs.3.rs-229482/v1:
+
+`-beta u_{i-1} + alpha u_i - gamma u_{i+1} = sigma + eta`
+
+`beta` and `gamma` are preprint (17). `alpha` is preprint (18). `sigma` and `eta` are preprint (19).
+
+`assemble_brunetti_speciale_rudan_2021` stores that row after the endpoint values move to the right-hand side. `assemble_nonuniform_system` is the same row as a dense matrix. Neither function calls the 2005 recurrence.
+
+The Springer journal pages were not photographed. The check is a text extraction of the preprint, so the assembly status is `PREPRINT_TEXT_CHECKED`, not a certified journal-page transcription.
+
+## Measured refinement
+
+Uniform nodes, spacing `1/(N+1)`. A drop in the maximum nodal error is `reduction_ratio`. Dividing the log of that ratio by the log of the spacing ratio gives `observed_order`. That number is a measurement on this mesh family. Formal order remains `NOT_ASSIGNED`.
+
+The linear problem `u = 2 + 3x`, with `c = 0` and `s = 0`, is an infrastructure check. It is not the manufactured solution (20).
+
 ## Status
 
 | Item | Label |
