@@ -23,4 +23,6 @@ Separate tridiagonal solver from Brunetti, Speciale and Rudan 2021. Not a call t
 `reconstruction/phase3-4-and-validation` adds the shared root contract, the DOP853 eigenvalue match, the symmetric matrix ground state, and the validation campaign. `main` is unchanged. Release status remains `NOT_CERTIFIED`.
 
 
+## Still out
+
 Coordinate mapping. WKB hybrid. Woods–Saxon table.
