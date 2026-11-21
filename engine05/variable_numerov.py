@@ -309,13 +309,20 @@ def eigenvalue_on_variable_mesh(
     if bracket is None:
         raise VariableStepError("No bracketed sign change on the frozen variable mesh")
 
-    def residual(energy: float) -> float:
-        value, ok = mismatch(float(energy))
-        if not ok or not math.isfinite(value):
-            return 1e6 if energy > bracket[0] else -1e6
-        return value
+    from engine05.root_integrity import refine_root
 
-    energy = float(brentq(residual, bracket[0], bracket[1], xtol=1e-12, rtol=1e-10, maxiter=80))
+    acceptance = refine_root(
+        bracket[0],
+        bracket[1],
+        mismatch,
+        xtol=1e-12,
+        rtol=1e-10,
+        maxiter=80,
+        residual_atol=1e-6,
+    )
+    if not acceptance.converged or acceptance.energy is None:
+        raise VariableStepError(acceptance.termination_reason)
+    energy = acceptance.energy
     if evaluations is not None:
         evaluations.append(count)
     return energy

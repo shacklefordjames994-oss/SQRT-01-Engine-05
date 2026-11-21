@@ -18,6 +18,9 @@ Separate tridiagonal solver from Brunetti, Speciale and Rudan 2021. Not a call t
 `assemble_brunetti_speciale_rudan_2021` is the band form of preprint equations (16)–(19). The dense solver uses that same row. A text extraction of CC-BY preprint 10.21203/rs.3.rs-229482/v1 was checked. The Springer page images were not. The linear solution `u = 2 + 3x` passes on a nonuniform grid. Uniform refinement records a measured order and still leaves the formal order `NOT_ASSIGNED`. 05-E was not edited.
 
 
-## Still out
+## Reconstruction branch
+
+`reconstruction/phase3-4-and-validation` adds the shared root contract, the DOP853 eigenvalue match, the symmetric matrix ground state, and the validation campaign. `main` is unchanged. Release status remains `NOT_CERTIFIED`.
+
 
 Coordinate mapping. WKB hybrid. Woods–Saxon table.

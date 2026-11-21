@@ -14,7 +14,6 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
-from scipy.optimize import brentq
 
 HBAR_J_S = 1.054571817e-34
 U_KG = 1.66053906660e-27
@@ -307,17 +306,20 @@ def solve_bound_state(
     if not lo < hi < 0.0:
         raise NumerovError("Bound-state search window must lie below threshold")
     bracket = _bracket(problem, lo, hi)
+    from engine05.root_integrity import refine_root
 
-    def residual(energy: float) -> float:
-        mismatch, ok = problem.integrate(float(energy))
-        if not ok or not math.isfinite(mismatch):
-            # Keep Brent inside a finite landscape; the bracket itself is valid.
-            return 1e6 if energy > bracket[0] else -1e6
-        return mismatch
-
-    energy = float(
-        brentq(residual, bracket[0], bracket[1], xtol=1e-14, rtol=1e-12, maxiter=200)
+    acceptance = refine_root(
+        bracket[0],
+        bracket[1],
+        lambda energy: problem.integrate(float(energy)),
+        xtol=1e-14,
+        rtol=1e-12,
+        maxiter=200,
+        residual_atol=1e-8,
     )
+    if not acceptance.converged or acceptance.energy is None:
+        raise NumerovError(acceptance.termination_reason)
+    energy = acceptance.energy
     mismatch, ok = problem.integrate(energy)
     if not ok:
         raise NumerovError("Eigenvalue root landed on an invalid matching point")

@@ -10,7 +10,6 @@ import math
 from dataclasses import dataclass
 
 import numpy as np
-from scipy.optimize import brentq
 
 from engine05.numerov_solver import (
     GaussianModel,
@@ -163,10 +162,12 @@ def eigenvalue_on_legs(
     if bracket is None:
         raise LegMeshError("No bracketed sign change on the frozen leg mesh")
 
-    def residual(energy: float) -> float:
+    from engine05.root_integrity import refine_root
+
+    def producer(energy: float) -> tuple[float, bool]:
         if frozen != (n_out, n_in):
             raise LegMeshError("Mesh changed during the root search")
-        mismatch, ok = mismatch_on_legs(
+        return mismatch_on_legs(
             model,
             float(energy),
             n_out=n_out,
@@ -175,11 +176,19 @@ def eigenvalue_on_legs(
             match_over_a=match_over_a,
             evaluations=evaluations,
         )
-        if not ok or not math.isfinite(mismatch):
-            return 1e6 if energy > bracket[0] else -1e6
-        return mismatch
 
-    return float(brentq(residual, bracket[0], bracket[1], xtol=1e-12, rtol=1e-10, maxiter=80))
+    acceptance = refine_root(
+        bracket[0],
+        bracket[1],
+        producer,
+        xtol=1e-12,
+        rtol=1e-10,
+        maxiter=80,
+        residual_atol=1e-6,
+    )
+    if not acceptance.converged or acceptance.energy is None:
+        raise LegMeshError(acceptance.termination_reason)
+    return acceptance.energy
 
 
 def independent_leg_eigenvalue(
